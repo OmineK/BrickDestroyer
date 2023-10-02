@@ -13,7 +13,7 @@ public class GameBall : MonoBehaviour
     int xDirection = 1;
     float currentBallSpeed;
 
-    Rigidbody2D ballRB;
+    [NonSerialized] public Rigidbody2D ballRB;
 
     void Awake()
     {
@@ -42,13 +42,12 @@ public class GameBall : MonoBehaviour
 
     void ControlBallVelocity()
     {
-        currentDirection = ballRB.velocity;
-        currentDirection.Normalize();
-
         if (currentBallSpeed >= maxBallSpeed)
+        {
             currentBallSpeed = maxBallSpeed;
-
-        ballRB.velocity = currentDirection * currentBallSpeed;
+            SetupBallVelocity();
+        }
+   
     }
 
     void GenerateRandomXDirection()
@@ -67,5 +66,13 @@ public class GameBall : MonoBehaviour
         if (currentBallSpeed >= maxBallSpeed) { return; }
 
         currentBallSpeed += 0.2f;
+    }
+
+    public void SetupBallVelocity()
+    {
+        currentDirection = ballRB.velocity;
+        currentDirection.Normalize();
+
+        ballRB.velocity = currentDirection * currentBallSpeed;
     }
 }

@@ -27,17 +27,19 @@ public class CollisionHandler : MonoBehaviour
             gameBall.IncreseBallSpeed();            
 
             //if ball hit left side of player platform
-            if (player.transform.position.x > player.transform.position.x - player.transform.localScale.x / 2)
+            if (transform.position.x < player.transform.position.x - player.transform.localScale.x / 2)
             {
-                float randomBoostX = UnityEngine.Random.Range(0.5f, 3.5f);
-                gameBall.currentDirection = new Vector3(100, 100);
+                float randomNegativeX = UnityEngine.Random.Range(-8f, -5f);
+                gameBall.ballRB.velocity = new Vector3(randomNegativeX, gameBall.ballRB.velocity.y);
+                gameBall.SetupBallVelocity();
             }
 
             //if ball hit right side of player platform
-            if (player.transform.position.x < player.transform.position.x + player.transform.localScale.x / 2)
+            if (transform.position.x > player.transform.position.x + player.transform.localScale.x / 2)
             {
-                float randomReduceX = UnityEngine.Random.Range(-0.5f, 3.5f);
-                gameBall.currentDirection = new Vector3(100, 100);
+                float randomPositivetX = UnityEngine.Random.Range(5f, 8f);
+                gameBall.ballRB.velocity = new Vector3(randomPositivetX, gameBall.ballRB.velocity.y);
+                gameBall.SetupBallVelocity();
             }
         }
     }
