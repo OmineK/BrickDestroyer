@@ -23,6 +23,10 @@ public class CollisionHandler : MonoBehaviour
         if (collision.gameObject.GetComponent<Player>() != null)
         {
             gameBall.IncreseBallSpeed();
+
+            float randomX = UnityEngine.Random.Range(-2f, 2f);
+
+            gameBall.ballRB.velocity = new Vector3(gameBall.ballRB.velocity.x + randomX, gameBall.ballRB.velocity.y);
         }
     }
 
