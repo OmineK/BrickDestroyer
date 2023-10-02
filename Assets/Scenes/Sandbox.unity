@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910c8e8f75e729340b4c028f7768f7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpeed: 6
+  initialBallSpeed: 6
+  maxBallSpeed: 10
 --- !u!50 &15540197
 Rigidbody2D:
   serializedVersion: 4
