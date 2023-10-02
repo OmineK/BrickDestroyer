@@ -31,7 +31,6 @@ public class CollisionHandler : MonoBehaviour
             {
                 float randomNegativeX = UnityEngine.Random.Range(-8f, -5f);
                 gameBall.ballRB.velocity = new Vector3(randomNegativeX, gameBall.ballRB.velocity.y);
-                gameBall.SetupBallVelocity();
             }
 
             //if ball hit right side of player platform
@@ -39,8 +38,9 @@ public class CollisionHandler : MonoBehaviour
             {
                 float randomPositivetX = UnityEngine.Random.Range(5f, 8f);
                 gameBall.ballRB.velocity = new Vector3(randomPositivetX, gameBall.ballRB.velocity.y);
-                gameBall.SetupBallVelocity();
             }
+
+            gameBall.SetupBallVelocity();
         }
     }
 

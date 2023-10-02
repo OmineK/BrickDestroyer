@@ -9,11 +9,10 @@ public class GameBall : MonoBehaviour
     [SerializeField] float maxBallSpeed;
 
     [NonSerialized] public Vector3 currentDirection;
+    [NonSerialized] public Rigidbody2D ballRB;
 
     int xDirection = 1;
     float currentBallSpeed;
-
-    [NonSerialized] public Rigidbody2D ballRB;
 
     void Awake()
     {
@@ -23,17 +22,19 @@ public class GameBall : MonoBehaviour
     void Start()
     {
         currentBallSpeed = initialBallSpeed;
-        SetupInitialVelocityToBall();
+        SetupStartDirection();
+        SetupBallVelocity();
     }
 
     void FixedUpdate()
     {
         ControlBallVelocity();
 
-        Debug.Log(currentBallSpeed);
+        Debug.Log("magnitude: " + ballRB.velocity.magnitude);
+        Debug.Log("speed: " + currentBallSpeed);
     }
 
-    void SetupInitialVelocityToBall()
+    void SetupStartDirection()
     {
         GenerateRandomXDirection();
         ballRB.velocity = new Vector3(currentBallSpeed * xDirection, currentBallSpeed);
