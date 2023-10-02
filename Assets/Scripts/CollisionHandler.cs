@@ -17,7 +17,11 @@ public class CollisionHandler : MonoBehaviour
         if (collision.gameObject.GetComponent<Player>())
         {
             gameBall.yDirection *= -1;
-            gameBall.gameBallRB.AddForce(new Vector3(0, 4));
+
+            if (gameBall.currentBallSpeed < gameBall.maxBallSpeed)
+                gameBall.currentBallSpeed += 0.2f;
+            else
+                gameBall.currentBallSpeed = gameBall.maxBallSpeed;
         }
 
         if (collision.transform.position.y > transform.position.y &&

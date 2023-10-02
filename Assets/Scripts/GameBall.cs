@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class GameBall : MonoBehaviour
 {
-    [SerializeField] float ballSpeed;
+    [SerializeField] float initialBallSpeed;
+    public float maxBallSpeed;
 
     [NonSerialized] public int xDirection = 1;
     [NonSerialized] public int yDirection = 1;
+    [NonSerialized] public float currentBallSpeed;
 
     [NonSerialized] public Rigidbody2D gameBallRB;
 
@@ -19,6 +21,7 @@ public class GameBall : MonoBehaviour
 
     void Start()
     {
+        currentBallSpeed = initialBallSpeed;
         GenerateRandomXDirection();
     }
 
@@ -27,9 +30,9 @@ public class GameBall : MonoBehaviour
         BallMovement();
     }
 
-    private void BallMovement()
+    void BallMovement()
     {
-        gameBallRB.velocity = new Vector3(ballSpeed * xDirection, ballSpeed * yDirection, 0);
+        gameBallRB.velocity = new Vector3(currentBallSpeed * xDirection, currentBallSpeed * yDirection, 0);
     }
 
     void GenerateRandomXDirection()
