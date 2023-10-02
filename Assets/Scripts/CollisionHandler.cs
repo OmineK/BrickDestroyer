@@ -22,11 +22,23 @@ public class CollisionHandler : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Player>() != null)
         {
-            gameBall.IncreseBallSpeed();
+            Player player = collision.gameObject.GetComponent<Player>();
 
-            float randomX = UnityEngine.Random.Range(-2f, 2f);
+            gameBall.IncreseBallSpeed();            
 
-            gameBall.ballRB.velocity = new Vector3(gameBall.ballRB.velocity.x + randomX, gameBall.ballRB.velocity.y);
+            //if ball hit left side of player platform
+            if (player.transform.position.x > player.transform.position.x - player.transform.localScale.x / 2)
+            {
+                float randomBoostX = UnityEngine.Random.Range(0.5f, 3.5f);
+                gameBall.currentDirection = new Vector3(100, 100);
+            }
+
+            //if ball hit right side of player platform
+            if (player.transform.position.x < player.transform.position.x + player.transform.localScale.x / 2)
+            {
+                float randomReduceX = UnityEngine.Random.Range(-0.5f, 3.5f);
+                gameBall.currentDirection = new Vector3(100, 100);
+            }
         }
     }
 

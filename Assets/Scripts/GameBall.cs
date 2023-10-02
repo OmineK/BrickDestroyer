@@ -8,11 +8,12 @@ public class GameBall : MonoBehaviour
     [SerializeField] float initialBallSpeed;
     [SerializeField] float maxBallSpeed;
 
-    int xDirection = 1;
+    [NonSerialized] public Vector3 currentDirection;
 
+    int xDirection = 1;
     float currentBallSpeed;
 
-    [NonSerialized] public Rigidbody2D ballRB;
+    Rigidbody2D ballRB;
 
     void Awake()
     {
@@ -28,6 +29,8 @@ public class GameBall : MonoBehaviour
     void FixedUpdate()
     {
         ControlBallVelocity();
+
+        Debug.Log(currentBallSpeed);
     }
 
     void SetupInitialVelocityToBall()
@@ -37,12 +40,12 @@ public class GameBall : MonoBehaviour
     }
 
 
-    private void ControlBallVelocity()
+    void ControlBallVelocity()
     {
-        Vector3 currentDirection = ballRB.velocity;
+        currentDirection = ballRB.velocity;
         currentDirection.Normalize();
 
-        if (ballRB.velocity.magnitude >= maxBallSpeed)
+        if (currentBallSpeed >= maxBallSpeed)
             currentBallSpeed = maxBallSpeed;
 
         ballRB.velocity = currentDirection * currentBallSpeed;
