@@ -7,33 +7,23 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float playerSpeed;
 
-    Rigidbody2D rb;
+    Rigidbody2D playerRB;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        playerRB = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        rb.velocity = new Vector3(horizontalInput * playerSpeed, 0, 0);
-        BlockMoveOutsideCamera();
+        playerRB.velocity = new Vector3(horizontalInput * playerSpeed, 0, 0);
     }
 
     void Update()
     {
         PlayerInputs();
-    }
-
-    void BlockMoveOutsideCamera()
-    {
-        if (transform.position.x <= -10)
-            transform.position = new Vector3(-10, transform.position.y, 0);
-
-        if (transform.position.x >= 10)
-            transform.position = new Vector3(10, transform.position.y, 0);
     }
 
     void PlayerInputs()
