@@ -14,29 +14,23 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>())
+        PlayerCollision(collision);
+        BrickCollision(collision);
+    }
+
+    void PlayerCollision(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Player>() != null)
         {
-            gameBall.yDirection *= -1;
-
-            if (gameBall.currentBallSpeed < gameBall.maxBallSpeed)
-                gameBall.currentBallSpeed += 0.2f;
-            else
-                gameBall.currentBallSpeed = gameBall.maxBallSpeed;
+            gameBall.IncreseBallSpeed();
         }
+    }
 
-        if (collision.transform.position.y > transform.position.y &&
-            collision.transform.position.x == 0)
-            gameBall.yDirection *= -1;
-
-        if ((collision.transform.position.x > transform.position.x && collision.transform.position.y == 0) ||
-            (collision.transform.position.x < transform.position.x && collision.transform.position.y == 0))
-            gameBall.xDirection *= -1;
-
-        //TODO: if game object is brick
-
-        //TODO: Delete above if after tests
-        if (collision.transform.position.y < transform.position.y &&
-            collision.transform.position.x == 0)
-            gameBall.yDirection *= -1;
+    void BrickCollision(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Brick>() != null)
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }

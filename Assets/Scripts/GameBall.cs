@@ -6,33 +6,48 @@ using UnityEngine;
 public class GameBall : MonoBehaviour
 {
     [SerializeField] float initialBallSpeed;
-    public float maxBallSpeed;
+    [SerializeField] float maxBallSpeed;
 
-    [NonSerialized] public int xDirection = 1;
-    [NonSerialized] public int yDirection = 1;
-    [NonSerialized] public float currentBallSpeed;
+    int xDirection = 1;
 
-    [NonSerialized] public Rigidbody2D gameBallRB;
+    float currentBallSpeed;
+
+    [NonSerialized] public Rigidbody2D ballRB;
 
     void Awake()
     {
-        gameBallRB = GetComponent<Rigidbody2D>();
+        ballRB = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
         currentBallSpeed = initialBallSpeed;
-        GenerateRandomXDirection();
+        SetupInitialVelocityToBall();
     }
 
     void FixedUpdate()
     {
-        BallMovement();
+        ControlBallVelocity();
+        Debug.Log("Magnitude: " + ballRB.velocity.magnitude);
+        Debug.Log("Speed: " + currentBallSpeed);
     }
 
-    void BallMovement()
+    void SetupInitialVelocityToBall()
     {
-        gameBallRB.velocity = new Vector3(currentBallSpeed * xDirection, currentBallSpeed * yDirection, 0);
+        GenerateRandomXDirection();
+        ballRB.velocity = new Vector3(currentBallSpeed * xDirection, currentBallSpeed);
+    }
+
+
+    private void ControlBallVelocity()
+    {
+        Vector3 currentDirection = ballRB.velocity;
+        currentDirection.Normalize();
+
+        if (ballRB.velocity.magnitude > maxBallSpeed)
+            currentBallSpeed = maxBallSpeed;
+
+        ballRB.velocity = currentDirection * currentBallSpeed;
     }
 
     void GenerateRandomXDirection()
@@ -44,5 +59,12 @@ public class GameBall : MonoBehaviour
 
         else if (randomXDir == 1)
             xDirection = -1;
+    }
+
+    public void IncreseBallSpeed()
+    {
+        if (currentBallSpeed > maxBallSpeed) { return; }
+
+        currentBallSpeed += 0.2f;
     }
 }
