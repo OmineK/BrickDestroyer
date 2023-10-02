@@ -44,7 +44,7 @@ public class GameBall : MonoBehaviour
         Vector3 currentDirection = ballRB.velocity;
         currentDirection.Normalize();
 
-        if (ballRB.velocity.magnitude > maxBallSpeed)
+        if (ballRB.velocity.magnitude >= maxBallSpeed)
             currentBallSpeed = maxBallSpeed;
 
         ballRB.velocity = currentDirection * currentBallSpeed;
@@ -63,7 +63,7 @@ public class GameBall : MonoBehaviour
 
     public void IncreseBallSpeed()
     {
-        if (currentBallSpeed > maxBallSpeed) { return; }
+        if (currentBallSpeed >= maxBallSpeed) { return; }
 
         currentBallSpeed += 0.2f;
     }
