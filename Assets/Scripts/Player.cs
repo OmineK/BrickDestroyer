@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float playerSpeed;
 
+    public float maxPlatformSize { get; private set; } = 2.2f;
+    public float minPlatformSize { get; private set; } = 0.6f;
+
     Rigidbody2D playerRB;
 
     void Awake()

@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class Brick : MonoBehaviour
 {
-    //void Update()
-    //{
-    
-    //}
+
 }

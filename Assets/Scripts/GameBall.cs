@@ -29,9 +29,6 @@ public class GameBall : MonoBehaviour
     void FixedUpdate()
     {
         ControlBallVelocity();
-
-        Debug.Log("magnitude: " + ballRB.velocity.magnitude);
-        Debug.Log("speed: " + currentBallSpeed);
     }
 
     void SetupStartDirection()
