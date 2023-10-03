@@ -5,6 +5,19 @@ using UnityEngine;
 public class PlatformBoost : MonoBehaviour
 {
     [SerializeField] float boostSize;
+    [SerializeField] float fallingSpeed;
+
+    void Update()
+    {
+        FallingMovement();
+    }
+
+    void FallingMovement()
+    {
+        float newYPos = transform.position.y - (fallingSpeed * Time.deltaTime);
+
+        transform.position = new Vector3(transform.position.x, newYPos);
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
