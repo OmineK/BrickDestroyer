@@ -17,7 +17,7 @@ public class ExtraBall : BuffEntity
             Player player = collision.gameObject.GetComponent<Player>();
 
             float newY = player.transform.position.y + 0.7f;
-            Vector3 newBallPos = new Vector3(player.transform.position.x, newY);
+            Vector3 newBallPos = new Vector3(transform.position.x, newY);
 
             Instantiate(gameBallPref, newBallPos, Quaternion.identity);
 

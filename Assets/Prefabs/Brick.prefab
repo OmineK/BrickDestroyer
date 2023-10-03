@@ -100,6 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformBoostPref: {fileID: 157754315025831564, guid: 3af5a1dd146fea348b1c48f88a795b6e, type: 3}
   platformBoostDropChance: 4
+  platformReducerPref: {fileID: 5996200228329512519, guid: 29fb8b892f71cf74da578bdd2a384ae5, type: 3}
+  platformReducerDropChance: 6
+  extraBallPref: {fileID: 1218931280156012016, guid: 35381c37143afad4084da58b2b4538a1, type: 3}
+  extraBallDropChance: 5
 --- !u!61 &4357917239372455189
 BoxCollider2D:
   m_ObjectHideFlags: 0
