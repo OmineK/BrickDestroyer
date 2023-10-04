@@ -25,32 +25,46 @@ public class GameBallCollisionHandler : MonoBehaviour
         {
             Player player = collision.gameObject.GetComponent<Player>();
 
-            gameBall.IncreseBallSpeed();            
+            gameBall.IncreseBallSpeed();
 
-            //if ball hit left side of player platform
-            if (transform.position.x < player.transform.position.x - player.transform.localScale.x / 2)
-                gameBall.ballRB.velocity = new Vector3(-6f, gameBall.ballRB.velocity.y);
+            if (player.magnetBuffTimer < 0)
+            {
+                //if ball hit left side of player platform
+                if (transform.position.x < player.transform.position.x - player.transform.localScale.x / 2)
+                    gameBall.ballRB.velocity = new Vector3(-6f, gameBall.ballRB.velocity.y);
 
-            //if ball hit right side of player platform
-            if (transform.position.x > player.transform.position.x + player.transform.localScale.x / 2)
-                gameBall.ballRB.velocity = new Vector3(6f, gameBall.ballRB.velocity.y);
+                //if ball hit right side of player platform
+                if (transform.position.x > player.transform.position.x + player.transform.localScale.x / 2)
+                    gameBall.ballRB.velocity = new Vector3(6f, gameBall.ballRB.velocity.y);
 
-            //if ball hit the left-center of player platform
-            if (transform.position.x > player.transform.position.x - player.transform.localScale.x / 2 &&
-                transform.position.x < player.transform.position.x - player.transform.localScale.x / 4)
-                gameBall.ballRB.velocity = new Vector3(-2f, gameBall.ballRB.velocity.y);
+                //if ball hit the left-center of player platform
+                if (transform.position.x > player.transform.position.x - player.transform.localScale.x / 2 &&
+                    transform.position.x < player.transform.position.x - player.transform.localScale.x / 4)
+                    gameBall.ballRB.velocity = new Vector3(-2f, gameBall.ballRB.velocity.y);
 
-            //if ball hit the right-center of player platform
-            if (transform.position.x < player.transform.position.x + player.transform.localScale.x / 2 &&
-                transform.position.x > player.transform.position.x + player.transform.localScale.x / 4)
-                gameBall.ballRB.velocity = new Vector3(2f, gameBall.ballRB.velocity.y);
+                //if ball hit the right-center of player platform
+                if (transform.position.x < player.transform.position.x + player.transform.localScale.x / 2 &&
+                    transform.position.x > player.transform.position.x + player.transform.localScale.x / 4)
+                    gameBall.ballRB.velocity = new Vector3(2f, gameBall.ballRB.velocity.y);
 
-            //if ball hit the center of player platform
-            if (transform.position.x > player.transform.position.x - player.transform.localScale.x / 4 &&
-                transform.position.x < player.transform.position.x + player.transform.localScale.x / 4)
-                gameBall.ballRB.velocity = new Vector3(0, gameBall.ballRB.velocity.y);
+                //if ball hit the center of player platform
+                if (transform.position.x > player.transform.position.x - player.transform.localScale.x / 4 &&
+                    transform.position.x < player.transform.position.x + player.transform.localScale.x / 4)
+                    gameBall.ballRB.velocity = new Vector3(0, gameBall.ballRB.velocity.y);
 
-            gameBall.SetupBallVelocity();
+                gameBall.SetupBallVelocity();
+            }
+            else
+            {
+                if (gameBall.ballAttracted == false)
+                {
+                    gameBall.ballRB.velocity = Vector2.zero;
+                    gameBall.ballRB.isKinematic = true;
+                    player.attractedBalls.Add(this.gameObject);
+                    transform.parent = player.transform;
+                    gameBall.ballAttracted = true;
+                }
+            }
         }
     }
 

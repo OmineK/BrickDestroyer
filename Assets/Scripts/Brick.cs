@@ -16,6 +16,10 @@ public class Brick : MonoBehaviour
     [SerializeField] GameObject extraBallPref;
     [SerializeField][Range(0, 100)] int extraBallDropChance;
 
+    [Header("Magnetic platform")]
+    [SerializeField] GameObject magentBuffPref;
+    [SerializeField][Range(0, 100)] int magentBuffDropChance;
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<GameBall>() != null)
@@ -31,6 +35,10 @@ public class Brick : MonoBehaviour
             //Extra game ball
             if (extraBallDropChance > Random.Range(1, 101))
                 Instantiate(extraBallPref, transform.position, Quaternion.identity);
+
+            //Magnet buff
+            if (magentBuffDropChance > Random.Range(1, 101))
+                Instantiate(magentBuffPref, transform.position, Quaternion.identity);
         }
     }
 }

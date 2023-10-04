@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameBall : MonoBehaviour
@@ -8,6 +9,7 @@ public class GameBall : MonoBehaviour
     [SerializeField] float initialBallSpeed;
     [SerializeField] float maxBallSpeed;
 
+    [NonSerialized] public bool ballAttracted = false;
     [NonSerialized] public Vector3 currentDirection;
     [NonSerialized] public Rigidbody2D ballRB;
 
@@ -49,7 +51,6 @@ public class GameBall : MonoBehaviour
             currentBallSpeed = maxBallSpeed;
             SetupBallVelocity();
         }
-   
     }
 
     void GenerateRandomXDirection()
@@ -78,7 +79,26 @@ public class GameBall : MonoBehaviour
         ballRB.velocity = currentDirection * currentBallSpeed;
     }
 
-    //void IncreaseBallCounter() => gameManager.ballsAlive++;
+    public void CancelBallAttracted()
+    {
+        ballRB.isKinematic = false;
+
+        //if ball is on the left side of player platform
+        if (transform.localPosition.x < -0.2f)
+            ballRB.velocity = new Vector3(UnityEngine.Random.Range(-6f, -0.5f), currentBallSpeed);
+
+        //if ball is on the right side of player platform
+        if (transform.localPosition.x > 0.2f)
+            ballRB.velocity = new Vector3(UnityEngine.Random.Range(0.5f, 6f), currentBallSpeed);
+
+        //if ball is on the center of player platform
+        if (transform.localPosition.x > -0.2f && transform.localPosition.x < 0.2f)
+            ballRB.velocity = new Vector3(UnityEngine.Random.Range(-1f, 1f), currentBallSpeed);
+
+        SetupBallVelocity();
+        transform.parent = null;
+        ballAttracted = false;
+    }
 
     public void DecreaseBallCounter() => gameManager.ballsAlive--;
 }

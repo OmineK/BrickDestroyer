@@ -16,7 +16,9 @@ public class PlatformBoost : BuffEntity
         if (collision.gameObject.GetComponent<Player>() != null)
         {
             Player player = collision.gameObject.GetComponent<Player>();
-            BoostSize(player);
+
+            if (player.magnetBuffTimer < 0)
+                BoostSize(player);
 
             Destroy(this.gameObject);
         }
@@ -26,7 +28,7 @@ public class PlatformBoost : BuffEntity
     {
         if (player.transform.localScale.x < player.maxPlatformSize)
         {
-            
+
             float newXScale = Mathf.Round((player.transform.localScale.x + boostSize) * 10f) * 0.1f;
             player.transform.localScale = new Vector3(newXScale, player.transform.localScale.y, player.transform.localScale.z);
         }

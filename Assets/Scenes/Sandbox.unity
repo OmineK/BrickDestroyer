@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 497138687}
   - component: {fileID: 497138686}
   m_Layer: 0
-  m_Name: Game manager
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,7 +464,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &517178899
 PrefabInstance:
@@ -605,7 +605,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &584329374 stripped
 Transform:
@@ -1287,7 +1287,7 @@ Transform:
   - {fileID: 779729000}
   - {fileID: 1390401533}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1390401532
 GameObject:
@@ -2438,7 +2438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4853250448741377344, guid: 7bdd080e64f0a2b4f950b02365ca8d1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.02
+      value: -0.01999998
       objectReference: {fileID: 0}
     - target: {fileID: 4853250448741377344, guid: 7bdd080e64f0a2b4f950b02365ca8d1e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2454,15 +2454,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4853250448741377344, guid: 7bdd080e64f0a2b4f950b02365ca8d1e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4853250448741377344, guid: 7bdd080e64f0a2b4f950b02365ca8d1e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4853250448741377344, guid: 7bdd080e64f0a2b4f950b02365ca8d1e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4853250448741377344, guid: 7bdd080e64f0a2b4f950b02365ca8d1e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2491,7 +2491,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6427383345008082348, guid: f6190bc8fc107fe4a9607d57b9ac9fde, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6427383345008082348, guid: f6190bc8fc107fe4a9607d57b9ac9fde, type: 3}
       propertyPath: m_LocalPosition.x
