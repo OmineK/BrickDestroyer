@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
 {
     public float playerSpeed;
 
-    [NonSerialized] public float magnetBuffTimer;
     [NonSerialized] public List<GameObject> attractedBalls;
+    [NonSerialized] public float magnetBuffTimer;
 
     public float maxPlatformSize { get; private set; } = 2.2f;
     public float minPlatformSize { get; private set; } = 0.6f;

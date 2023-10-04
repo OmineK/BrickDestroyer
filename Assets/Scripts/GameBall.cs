@@ -11,12 +11,11 @@ public class GameBall : MonoBehaviour
 
     [NonSerialized] public bool ballAttracted = false;
     [NonSerialized] public Vector3 currentDirection;
+    [NonSerialized] public GameManager gameManager;
     [NonSerialized] public Rigidbody2D ballRB;
 
     int xDirection = 1;
     float currentBallSpeed;
-
-    GameManager gameManager;
 
     void Awake()
     {

@@ -71,7 +71,10 @@ public class GameBallCollisionHandler : MonoBehaviour
     void BrickCollision(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Brick>() != null)
+        {
+            gameBall.gameManager.bricksAlive--;
             Destroy(collision.gameObject);
+        }
     }
 
     void BottomBorderCollision(Collision2D collision)
