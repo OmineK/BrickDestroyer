@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExtraBall : BuffEntity
 {
     [SerializeField] GameObject gameBallPref;
+
     protected override void Update()
     {
         base.Update();

@@ -16,6 +16,7 @@ public class GameBallCollisionHandler : MonoBehaviour
     {
         PlayerCollision(collision);
         BrickCollision(collision);
+        BottomBorderCollision(collision);
     }
 
     void PlayerCollision(Collision2D collision)
@@ -28,17 +29,26 @@ public class GameBallCollisionHandler : MonoBehaviour
 
             //if ball hit left side of player platform
             if (transform.position.x < player.transform.position.x - player.transform.localScale.x / 2)
-            {
-                float randomNegativeX = UnityEngine.Random.Range(-8f, -5f);
-                gameBall.ballRB.velocity = new Vector3(randomNegativeX, gameBall.ballRB.velocity.y);
-            }
+                gameBall.ballRB.velocity = new Vector3(-6f, gameBall.ballRB.velocity.y);
 
             //if ball hit right side of player platform
             if (transform.position.x > player.transform.position.x + player.transform.localScale.x / 2)
-            {
-                float randomPositivetX = UnityEngine.Random.Range(5f, 8f);
-                gameBall.ballRB.velocity = new Vector3(randomPositivetX, gameBall.ballRB.velocity.y);
-            }
+                gameBall.ballRB.velocity = new Vector3(6f, gameBall.ballRB.velocity.y);
+
+            //if ball hit the left-center of player platform
+            if (transform.position.x > player.transform.position.x - player.transform.localScale.x / 2 &&
+                transform.position.x < player.transform.position.x - player.transform.localScale.x / 4)
+                gameBall.ballRB.velocity = new Vector3(-2f, gameBall.ballRB.velocity.y);
+
+            //if ball hit the right-center of player platform
+            if (transform.position.x < player.transform.position.x + player.transform.localScale.x / 2 &&
+                transform.position.x > player.transform.position.x + player.transform.localScale.x / 4)
+                gameBall.ballRB.velocity = new Vector3(2f, gameBall.ballRB.velocity.y);
+
+            //if ball hit the center of player platform
+            if (transform.position.x > player.transform.position.x - player.transform.localScale.x / 4 &&
+                transform.position.x < player.transform.position.x + player.transform.localScale.x / 4)
+                gameBall.ballRB.velocity = new Vector3(0, gameBall.ballRB.velocity.y);
 
             gameBall.SetupBallVelocity();
         }
@@ -47,8 +57,15 @@ public class GameBallCollisionHandler : MonoBehaviour
     void BrickCollision(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Brick>() != null)
-        {
             Destroy(collision.gameObject);
+    }
+
+    void BottomBorderCollision(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<BottomBorder>() != null)
+        {
+            gameBall.DecreaseBallCounter();
+            gameBall.ballRB.velocity = new Vector3(0, 0);
         }
     }
 }

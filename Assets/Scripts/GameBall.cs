@@ -14,6 +14,8 @@ public class GameBall : MonoBehaviour
     int xDirection = 1;
     float currentBallSpeed;
 
+    GameManager gameManager;
+
     void Awake()
     {
         ballRB = GetComponent<Rigidbody2D>();
@@ -21,9 +23,11 @@ public class GameBall : MonoBehaviour
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         currentBallSpeed = initialBallSpeed;
         SetupStartDirection();
         SetupBallVelocity();
+        gameManager.ballsAlive++;
     }
 
     void FixedUpdate()
@@ -73,4 +77,8 @@ public class GameBall : MonoBehaviour
 
         ballRB.velocity = currentDirection * currentBallSpeed;
     }
+
+    //void IncreaseBallCounter() => gameManager.ballsAlive++;
+
+    public void DecreaseBallCounter() => gameManager.ballsAlive--;
 }
