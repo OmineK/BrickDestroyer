@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] UI ui;
+
     [NonSerialized] public int ballsAlive;
 
     void Update()
     {
-       Invoke(nameof(GameOver), 0.1f);
+        if (ballsAlive == 0)
+            GameOver();
     }
 
     void GameOver()
     {
-        if (ballsAlive == 0)
-            Debug.Log("game over");
+        Debug.Log("game over");
     }
 }
