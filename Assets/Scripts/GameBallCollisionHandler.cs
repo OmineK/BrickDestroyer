@@ -72,7 +72,7 @@ public class GameBallCollisionHandler : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Brick>() != null)
         {
-            gameBall.gameManager.bricksAlive--;
+            gameBall.DecreaseBrickCounter();
             Destroy(collision.gameObject);
         }
     }

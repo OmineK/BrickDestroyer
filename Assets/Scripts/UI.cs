@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,14 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] GameObject darkScreen;
-    [SerializeField] GameObject gameOverScreen;
-    [SerializeField] GameObject levelCompleteScreen;
-    [SerializeField] GameObject pauseScreen;
+    [SerializeField] GameManager gameManager;
+
+    public GameObject darkScreen;
+    public GameObject gameOverScreen;
+    public GameObject levelCompleteScreen;
+    public GameObject pauseScreen;
+
+    [NonSerialized] public bool gamePause = false;
 
     void Start()
     {
@@ -22,15 +27,7 @@ public class UI : MonoBehaviour
         Cursor.visible = false;
     }
 
-    public void UnpauseGame()
-    {
-        Time.timeScale = 1;
-
-        pauseScreen.SetActive(false);
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+    public void ResumeButton() => gameManager.UnpauseGame();
 
     public void PlayAgainButton()
     {
@@ -44,8 +41,9 @@ public class UI : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void LevelComplete()
+    public void LevelCompleteUI()
     {
+        darkScreen.SetActive(true);
         levelCompleteScreen.SetActive(true);
         Invoke(nameof(LoadNextScene), 3f);
     }
