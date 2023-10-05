@@ -8,11 +8,16 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    [Header("Game manager")]
     [SerializeField] GameManager gameManager;
+
+    [Header("Gameplay UI panel text's")]
     [SerializeField] TextMeshProUGUI ballsAliveNumberText;
     [SerializeField] TextMeshProUGUI bricksLeftNumberText;
     [SerializeField] TextMeshProUGUI magneticBuffTimerText;
 
+    [Header("In game screen's")]
+    [SerializeField] GameObject gameCompleteScreen;
     public GameObject darkScreen;
     public GameObject gameOverScreen;
     public GameObject levelCompleteScreen;
@@ -22,6 +27,7 @@ public class UI : MonoBehaviour
 
     void Start()
     {
+        gameCompleteScreen.SetActive(false);
         darkScreen.SetActive(false);
         gameOverScreen.SetActive(false);
         levelCompleteScreen.SetActive(false);
@@ -47,10 +53,19 @@ public class UI : MonoBehaviour
 
     public void LevelCompleteUI()
     {
-        darkScreen.SetActive(true);
-        levelCompleteScreen.SetActive(true);
         gameManager.levelComplete = true;
-        Invoke(nameof(LoadNextScene), 3f);
+        darkScreen.SetActive(true);
+
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int gameSceneAmount = SceneManager.sceneCount;
+
+        if (currentSceneIndex == gameSceneAmount)
+            gameCompleteScreen.SetActive(true);
+        else
+        {
+            levelCompleteScreen.SetActive(true);
+            Invoke(nameof(LoadNextScene), 3f);
+        }
     }
 
     void LoadNextScene()
@@ -60,7 +75,6 @@ public class UI : MonoBehaviour
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextSceneIndex);
     }
-
     public void UpdateGameBallsAliveUI(int _currentBallsAlive) => ballsAliveNumberText.text = "Game balls: " + _currentBallsAlive.ToString();
 
     public void UpdateBricksAliveUI(int _currentBricksAlive) => bricksLeftNumberText.text = "Bricks left: " + _currentBricksAlive.ToString();

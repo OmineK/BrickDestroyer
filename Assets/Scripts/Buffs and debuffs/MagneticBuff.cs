@@ -11,7 +11,11 @@ public class MagneticBuff : BuffEntity
         if (collision.gameObject.GetComponent<Player>() != null)
         {
             Player player = collision.gameObject.GetComponent<Player>();
-            player.magneticBuffTimer = magneticBuffDuration;
+
+            if (player.magneticBuffTimer < 0)
+                player.magneticBuffTimer = magneticBuffDuration;
+            else
+                player.magneticBuffTimer += magneticBuffDuration;
 
             Destroy(this.gameObject);
         }

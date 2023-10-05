@@ -374,6 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 1305433381}
+  levelComplete: 0
 --- !u!4 &497138687
 Transform:
   m_ObjectHideFlags: 0
