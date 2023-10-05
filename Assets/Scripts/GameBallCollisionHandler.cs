@@ -16,7 +16,15 @@ public class GameBallCollisionHandler : MonoBehaviour
     {
         PlayerCollision(collision);
         BrickCollision(collision);
-        BottomBorderCollision(collision);
+
+        if (collision.gameObject.GetComponent<BottomBorder>() != null)
+        {
+            gameBall.DecreaseBallCounter();
+            Destroy(this.gameObject);
+            return;
+        }
+
+        AudioManager.instance.PlaySFX(2);
     }
 
     void PlayerCollision(Collision2D collision)
@@ -74,15 +82,6 @@ public class GameBallCollisionHandler : MonoBehaviour
         {
             gameBall.DecreaseBrickCounter();
             Destroy(collision.gameObject);
-        }
-    }
-
-    void BottomBorderCollision(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<BottomBorder>() != null)
-        {
-            gameBall.DecreaseBallCounter();
-            Destroy(this.gameObject);
         }
     }
 }

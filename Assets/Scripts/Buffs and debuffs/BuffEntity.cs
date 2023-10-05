@@ -17,4 +17,12 @@ public class BuffEntity : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, newYPos);
     }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Player>() != null)
+        {
+            AudioManager.instance.PlaySFX(0);
+        }
+    }
 }

@@ -6,8 +6,10 @@ public class MagneticBuff : BuffEntity
 {
     [SerializeField] float magneticBuffDuration;
 
-    void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
+
         if (collision.gameObject.GetComponent<Player>() != null)
         {
             Player player = collision.gameObject.GetComponent<Player>();

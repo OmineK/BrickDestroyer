@@ -54,13 +54,19 @@ public class UI : MonoBehaviour
     public void LevelCompleteUI()
     {
         gameManager.levelComplete = true;
+        AudioManager.instance.PlaySFX(1);
         darkScreen.SetActive(true);
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int gameSceneAmount = SceneManager.sceneCount;
 
         if (currentSceneIndex == gameSceneAmount)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             gameCompleteScreen.SetActive(true);
+        }
         else
         {
             levelCompleteScreen.SetActive(true);
