@@ -17,7 +17,7 @@ public class PlatformReducer : BuffEntity
         {
             Player player = collision.gameObject.GetComponent<Player>();
 
-            if (player.magnetBuffTimer < 0)
+            if (player.magneticBuffTimer < 0)
                 ReduceSize(player);
 
             Destroy(this.gameObject);

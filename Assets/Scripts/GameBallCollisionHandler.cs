@@ -27,7 +27,7 @@ public class GameBallCollisionHandler : MonoBehaviour
 
             gameBall.IncreseBallSpeed();
 
-            if (player.magnetBuffTimer < 0)
+            if (player.magneticBuffTimer < 0)
             {
                 //if ball hit left side of player platform
                 if (transform.position.x < player.transform.position.x - player.transform.localScale.x / 2)

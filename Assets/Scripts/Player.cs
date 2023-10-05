@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] UI ui;
+
     public float playerSpeed;
 
     [NonSerialized] public List<GameObject> attractedBalls;
-    [NonSerialized] public float magnetBuffTimer;
+    public float magneticBuffTimer;
 
     public float maxPlatformSize { get; private set; } = 2.2f;
     public float minPlatformSize { get; private set; } = 0.6f;
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
     {
         MyInputs();
         MagnetBuffTimerCheck();
+        MagneticTimerUI();
     }
 
     void MyInputs()
@@ -41,11 +44,22 @@ public class Player : MonoBehaviour
 
     void MagnetBuffTimerCheck()
     {
-        magnetBuffTimer -= Time.deltaTime;
+        magneticBuffTimer -= Time.deltaTime;
 
         //if magnet buff run out release all attracted balls
-        if (magnetBuffTimer < 0 && (attractedBalls.Count > 0))
+        if (magneticBuffTimer < 0 && (attractedBalls.Count > 0))
             ReleaseAllAttractedBalls();
+    }
+
+    void MagneticTimerUI()
+    {
+        if (magneticBuffTimer > 0)
+        {
+            ui.ShowMagneticBuffTimerUI(true);
+            ui.UpdateMagneticBuffTimerUI(magneticBuffTimer);
+        }
+        else
+            ui.ShowMagneticBuffTimerUI(false);
     }
 
     void ReleaseAllAttractedBalls()

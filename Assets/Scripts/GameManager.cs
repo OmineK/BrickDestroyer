@@ -7,12 +7,15 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] UI ui;
 
-    [NonSerialized] public int ballsAlive;
-    [NonSerialized] public int bricksAlive;
+    public bool levelComplete = false;
+
+    int ballsAlive;
+    int bricksAlive;
 
     void Start()
     {
         bricksAlive = FindObjectsOfType<Brick>().Length;
+        UpdateBricksAlive(0);
         Time.timeScale = 1;
     }
 
@@ -73,5 +76,17 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void UpdateBallsAlive(int amount)
+    {
+        ballsAlive += amount;
+        ui.UpdateGameBallsAliveUI(ballsAlive);
+    }
+
+    public void UpdateBricksAlive(int amount)
+    {
+        bricksAlive += amount;
+        ui.UpdateBricksAliveUI(bricksAlive);
     }
 }

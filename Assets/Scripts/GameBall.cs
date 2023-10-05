@@ -29,7 +29,7 @@ public class GameBall : MonoBehaviour
         currentBallSpeed = initialBallSpeed;
         SetupStartDirection();
         SetupBallVelocity();
-        gameManager.ballsAlive++;
+        gameManager.UpdateBallsAlive(1);
     }
 
     void FixedUpdate()
@@ -51,6 +51,8 @@ public class GameBall : MonoBehaviour
             currentBallSpeed = maxBallSpeed;
             SetupBallVelocity();
         }
+        else if (gameManager.levelComplete)
+            ballRB.velocity = Vector3.zero;
     }
 
     void GenerateRandomXDirection()
@@ -100,7 +102,7 @@ public class GameBall : MonoBehaviour
         ballAttracted = false;
     }
 
-    public void DecreaseBallCounter() => gameManager.ballsAlive--;
+    public void DecreaseBallCounter() => gameManager.UpdateBallsAlive(-1);
 
-    public void DecreaseBrickCounter() => gameManager.bricksAlive--;
+    public void DecreaseBrickCounter() => gameManager.UpdateBricksAlive(-1);
 }

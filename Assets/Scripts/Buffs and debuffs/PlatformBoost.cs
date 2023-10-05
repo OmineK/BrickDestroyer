@@ -17,7 +17,7 @@ public class PlatformBoost : BuffEntity
         {
             Player player = collision.gameObject.GetComponent<Player>();
 
-            if (player.magnetBuffTimer < 0)
+            if (player.magneticBuffTimer < 0)
                 BoostSize(player);
 
             Destroy(this.gameObject);
