@@ -82,7 +82,7 @@ public class GameBallCollisionHandler : MonoBehaviour
         if (collision.gameObject.GetComponent<BottomBorder>() != null)
         {
             gameBall.DecreaseBallCounter();
-            gameBall.ballRB.velocity = new Vector3(0, 0);
+            Destroy(this.gameObject);
         }
     }
 }
