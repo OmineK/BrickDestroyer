@@ -180,3 +180,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui: {fileID: 0}
   playerSpeed: 9
+  magneticBuffTimer: 0
