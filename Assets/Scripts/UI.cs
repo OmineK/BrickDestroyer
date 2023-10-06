@@ -58,9 +58,9 @@ public class UI : MonoBehaviour
         darkScreen.SetActive(true);
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int gameSceneAmount = SceneManager.sceneCount;
+        int gameSceneAmount = SceneManager.sceneCountInBuildSettings;
 
-        if (currentSceneIndex == gameSceneAmount)
+        if ((currentSceneIndex + 1) == gameSceneAmount)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

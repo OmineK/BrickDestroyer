@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public bool levelComplete = false;
 
+    bool doOnlyOnce = false;
     int ballsAlive;
     int bricksAlive;
 
@@ -24,8 +25,11 @@ public class GameManager : MonoBehaviour
         if (ballsAlive == 0)
             GameOver();
 
-        if (bricksAlive == 0)
+        if ((bricksAlive == 0) && (doOnlyOnce == false))
+        {
+            doOnlyOnce = true;
             LevelComplete();
+        }
 
         GamePauseInput();
     }
