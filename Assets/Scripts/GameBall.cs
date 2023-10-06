@@ -46,13 +46,17 @@ public class GameBall : MonoBehaviour
 
     void ControlBallVelocity()
     {
+        if (gameManager.levelComplete)
+        {
+            ballRB.velocity = Vector3.zero;
+            return;
+        }
+
         if (currentBallSpeed >= maxBallSpeed)
         {
             currentBallSpeed = maxBallSpeed;
             SetupBallVelocity();
         }
-        else if (gameManager.levelComplete)
-            ballRB.velocity = Vector3.zero;
     }
 
     void GenerateRandomXDirection()
